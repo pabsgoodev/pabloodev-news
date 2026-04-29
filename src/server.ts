@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.static("src/public"))
 app.use("/api", apiRoutes)
 app.use(cors()) 
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+app.get("/", (req, res) => {
+  res.sendFile("index.html", { root: "src/public" })
 })
+export default app
