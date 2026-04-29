@@ -13,6 +13,6 @@ app.use(express.static("src/public"))
 app.use("/api", apiRoutes)
 app.use(cors()) 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: "src/public" })
-})
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 export default app
