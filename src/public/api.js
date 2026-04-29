@@ -5,7 +5,7 @@ const searchBtn = document.getElementById("searchBtn");
 async function fetchNews(q, category) {
     try {
         container.innerHTML = "<p>Buscando notícias...</p>";
-        const url = new URL("http://localhost:3000/api/news");
+        const url = new URL("/api/news", window.location.origin);
         if (q)
             url.searchParams.append("q", q);
         if (category)
