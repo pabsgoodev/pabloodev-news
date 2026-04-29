@@ -1,18 +1,39 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import cors from "cors"
-import apiRoutes from "./apiRoutes"
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import path from 'path'; // <--- Faltava essa importação!
+import apiRoutes from './apiRoutes';
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
-const PORT = process.env.PORT || 3000
+const app = express();
 
-app.use(express.json())
-app.use(express.static("src/public"))
-app.use("/api", apiRoutes)
-app.use(cors()) 
+// Configurações básicas (CORS sempre antes das rotas)
+app.use(cors()); 
+app.use(express.json());
+
+// Definindo o caminho da pasta public de forma segura
+const publicPath = path.join(process.cwd(), 'src', 'public');
+
+// Servindo arquivos estáticos (CSS, JS, Imagens)
+app.use(express.static(publicPath));
+
+// Rotas da API
+app.use("/api", apiRoutes);
+
+// Rota raiz para o HTML
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  try {
+    res.sendFile(path.join(publicPath, 'index.html'));
+  } catch (error) {
+    res.status(500).send("Erro ao carregar o index.html");
+  }
 });
-export default app
+
+// A Vercel vai ignorar o app.listen, mas é bom deixar para o seu dev local
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+}
+
+export default app;
