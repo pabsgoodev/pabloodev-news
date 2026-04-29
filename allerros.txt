@@ -1,0 +1,4 @@
+ERROS QUE IMPEDIRAM O APP DE SUBIR E CONSUMIR A API:
+-Variaveis de ambientes
+-Server.js
+-chamada da api no localhost(Funcionaria se eu estivesse no localhost, MAS COMO NN ESTAV TIVE QUE RECONFIGURAR)
