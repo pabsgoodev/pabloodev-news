@@ -1,8 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from "cors"
-
-
+import apiRoutes from "./apiRoutes"
 
 dotenv.config()
 
@@ -11,8 +10,8 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(express.static("src/public"))
-app.use("/api")
-app.use(cors()) // Habilitar CORS para todas as rotas
+app.use("/api", apiRoutes)
+app.use(cors()) 
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
