@@ -1,4 +1,5 @@
 ERROS QUE IMPEDIRAM O APP DE SUBIR E CONSUMIR A API:
 -Variaveis de ambientes
--Server.js
+-Server.js: Sem o Export Default app no final e sem rota /
 -chamada da api no localhost(Funcionaria se eu estivesse no localhost, MAS COMO NN ESTAV TIVE QUE RECONFIGURAR)
+-node_modules subindo pro Git hub
