@@ -19,7 +19,7 @@ async function fetchNews(q, category) {
     }
     catch (error) {
         console.error("Erro ao buscar notícias:", error);
-        container.innerHTML = "<p>Erro ao buscar notícias</p>";
+        container.innerHTML = `<p>${input.value}</p>`;
     }
 }
 function renderNews(news) {
